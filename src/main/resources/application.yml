@@ -1,0 +1,54 @@
+server:
+   port: 1997
+   servlet:
+      context-path: /
+spring:
+   mvc:
+      pathmatch:
+         matching-strategy: ant_path_matcher
+   autoconfigure:
+      exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+h2-server:
+   port: 1998
+datasources:
+   xx:
+      jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521/XE
+      username: xx
+      password: xx
+      driver-class-name: oracle.jdbc.OracleDriver
+      tomcat:
+         maxActive: 5
+         maxIdle: 5
+         minIdle: 3
+         initialSize: 3
+         maxWait: 5000
+   yy:
+      jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521/XE
+      username: yy
+      password: yy
+      driver-class-name: oracle.jdbc.OracleDriver
+   zz:
+      jdbc-url: jdbc:oracle:thin:@127.0.0.1:1521/XE
+      username: zz
+      password: zz
+      driver-class-name: oracle.jdbc.OracleDriver
+calculators:
+   common:
+      pool:
+         max-total: 30
+         max-idle: 20
+         min-idle: 15
+         init-size: 15
+         max-age: 60
+         max-age-check-duration: 60
+      datasource:
+         type: file
+         path: data_log
+         pool-size: 10
+         username: calc
+         password: calc
+      lifecyle:
+         init-script: init.groovy
+         clear-script: clear.groovy
+         notify-topic: A,B,C
+         notify-script: notify.groovy
